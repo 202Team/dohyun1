@@ -7,23 +7,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Main Page</title>
+<title>로그인</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-<h1>Main Page</h1>
-<c:choose>
-	<c:when test="${empty login }">
-		<a href="loginui.do">로그인</a><br>
-	</c:when>
-	<c:otherwise>
-		${login.id} 님, 환영합니다 <a href="logout.do">로그아웃</a>
-	</c:otherwise>
-
-</c:choose><br>
-
-
-<a href="insertui.do">회원가입</a><br>
-<a href="read.do">회원정보</a>
+<h1>로그인</h1>
+<form action="login.do" method="post">
+ID : <input name="id"><br>
+PW : <input name="pw" type="password"><br>
+<input type="submit" value="로그인">
+</form>
 </body>
 </html>

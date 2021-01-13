@@ -14,6 +14,9 @@ import kr.co.command.Command;
 import kr.co.command.DeleteCommand;
 import kr.co.command.InsertCommand;
 import kr.co.command.InsertUICommand;
+import kr.co.command.LoginCommand;
+import kr.co.command.LoginUICommand;
+import kr.co.command.LogoutCommand;
 import kr.co.command.ReadCommand;
 import kr.co.command.UpdateCommand;
 import kr.co.command.UpdateUICommand;
@@ -56,6 +59,12 @@ public class FrontController extends HttpServlet {
 			com = new UpdateCommand();
 		}else if (sp.equalsIgnoreCase("/delete.do")) {
 			com = new DeleteCommand();
+		}else if (sp.equalsIgnoreCase("/loginui.do")) {
+			com = new LoginUICommand();
+		}else if (sp.equalsIgnoreCase("/login.do")) {
+			com = new LoginCommand();
+		}else if (sp.equalsIgnoreCase("/logout.do")) {
+			com = new LogoutCommand();
 		}
 		
 		

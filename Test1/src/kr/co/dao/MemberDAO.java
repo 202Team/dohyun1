@@ -9,6 +9,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import kr.co.domain.LoginDTO;
 import kr.co.domain.MemberDTO;
 
 public class MemberDAO {
@@ -197,8 +198,69 @@ public class MemberDAO {
 		
 	}
 
+	public String idcheck(String id) {
+		String getid = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select *from member where id = ?";
+		
+		try {
+			conn = datafactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				getid = rs.getString("id");
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			closeall(rs, pstmt, conn);
+		}
+		
+		
+		
+		
+		
+		return getid;
+	}
 
 
+	public LoginDTO login(LoginDTO loginDTO) {
+		LoginDTO login = new LoginDTO(null, null);
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select *from member where id=? and pw =?";
+		
+		try {
+			conn = datafactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, login.getId());
+			pstmt.setString(2, login.getPw());
+			
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+			login = new LoginDTO();
+			login.setId(login.getId());
+			
+			
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			closeall(rs, pstmt, conn);
+		}
+
+		return login;
+	}
+	
 	}
 	
 
