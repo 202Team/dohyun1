@@ -7,24 +7,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Main Page</title>
+<title>${dto.title}</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-<h1>Main Page</h1>
-<c:choose>
-	<c:when test="${empty login }">
-		<a href="loginui.do">로그인</a><br>
-		<a href="insertui.do">회원가입</a><br>
-	</c:when>
-	<c:otherwise>
-		${login.id} 님, 환영합니다 <a href="logout.do">로그아웃</a><br>
-	</c:otherwise>
 
-</c:choose>
-
-
-<a href="boardmove.do">게시판가기</a><br>
-<a href="read.do">회원정보</a>
+글번호: ${dto.num}<br>
+작성자: ${dto.author}<br>
+작성일: ${dto.writeday}<br>
+조회수: ${dto.readcnt}<br>
+제목: ${dto.title}<br>
+내용:
+<p>
+${dto.content}
+</p>
 </body>
 </html>

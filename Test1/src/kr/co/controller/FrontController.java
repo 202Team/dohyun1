@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.command.BoadMoveCommand;
+import kr.co.command.BoardInsertCommand;
+import kr.co.command.BoardInsertUICommand;
+import kr.co.command.BoardReadCommand;
 import kr.co.command.Command;
 import kr.co.command.DeleteCommand;
 import kr.co.command.InsertCommand;
@@ -65,6 +69,14 @@ public class FrontController extends HttpServlet {
 			com = new LoginCommand();
 		}else if (sp.equalsIgnoreCase("/logout.do")) {
 			com = new LogoutCommand();
+		}else if (sp.equalsIgnoreCase("/boardinsert.do")) {
+			com = new BoardInsertCommand();
+		}else if (sp.equalsIgnoreCase("/boardinsertui.do")) {
+			com = new BoardInsertUICommand();
+		}else if (sp.equalsIgnoreCase("/boardmove.do")) {
+			com = new BoadMoveCommand();
+		}else if (sp.equalsIgnoreCase("/boardread.do")) {
+			com = new BoardReadCommand();
 		}
 		
 		

@@ -7,24 +7,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Main Page</title>
+<title>게시판 글쓰기</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-<h1>Main Page</h1>
-<c:choose>
-	<c:when test="${empty login }">
-		<a href="loginui.do">로그인</a><br>
-		<a href="insertui.do">회원가입</a><br>
-	</c:when>
-	<c:otherwise>
-		${login.id} 님, 환영합니다 <a href="logout.do">로그아웃</a><br>
-	</c:otherwise>
+<h1>글 쓰기</h1>
 
-</c:choose>
+<form action="boardinsert.do">
+작성자 : <input name="author"> <br>
+제 목 : <input name="title"><br>
+내용 : <br>
+<textarea rows="10" name="content"></textarea><br>
+<input type="submit" value="등록">
 
-
-<a href="boardmove.do">게시판가기</a><br>
-<a href="read.do">회원정보</a>
+</form>
 </body>
 </html>

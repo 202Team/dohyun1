@@ -242,13 +242,13 @@ public class MemberDAO {
 			conn = datafactory.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, login.getId());
-			pstmt.setString(2, login.getPw());
+			pstmt.setString(1, loginDTO.getId());
+			pstmt.setString(2, loginDTO.getPw());
 			
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 			login = new LoginDTO();
-			login.setId(login.getId());
+			login.setId(loginDTO.getId());
 			
 			
 			}
