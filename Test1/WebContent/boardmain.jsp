@@ -29,7 +29,7 @@
 				<td>${dto.num}</td>
 				<td>			
 				<c:forEach begin="1" end="${dto.repIndent}">&nbsp;</c:forEach>	
-				<a href="read.do?num=${dto.num}">			
+				<a href="boardread.do?num=${dto.num}">			
 				${dto.title}
 				</a>
 				</td>
@@ -42,6 +42,24 @@
 	
 	</tbody>
 </table>
+
+<div>
+	<jsp:include page="page.jsp"/>
+</div>
+
+<form action="boardsearch.do">
+
+<select name="searchoption">
+
+	<option value="author">작성자</option>	
+	<option value="title">제목</option>
+	<option value="content">내용</option>
+	
+</select>
+<input name="searchekyword">
+<input type="submit" value="검색">
+</form>
+
 
 <a href="boardinsertui.do">글쓰기</a>
 <a></a>

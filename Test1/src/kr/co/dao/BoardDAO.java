@@ -275,4 +275,87 @@ public class BoardDAO {
 
 
 	   }
+
+
+	public void delete(int num) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "delete from board where num =? ";
+		
+		try {
+			conn = datafactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, num);
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			closeAll(null, pstmt, conn);
+		}
+		
 	}
+
+
+	public BoardDTO updateui(int num) {
+		 BoardDTO dto = null;
+	      
+	      Connection conn = null;
+	      PreparedStatement pstmt = null;
+	      String sql = "SELECT * FROM board WHERE num = ?";
+	      ResultSet rs = null;
+	      try {
+	         conn = datafactory.getConnection();
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setInt(1, num);
+	         rs = pstmt.executeQuery();
+	         if(rs.next()) {
+	            String author = rs.getString("author");
+	            String title = rs.getString("title");
+	            String content = rs.getString("content");
+	            String writeday = rs.getString("writeday");
+	            int readcnt = rs.getInt("readcnt");
+	            int repRoot = rs.getInt("repRoot");
+	            int repStep = rs.getInt("repStep");
+	            int repIndent= rs.getInt("repIndent");
+	            
+	            dto= new BoardDTO(num, author, title, content, 
+	                  writeday, readcnt, repRoot, repStep, repIndent);
+	         }
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         
+	         closeAll(rs, pstmt, conn);
+	      }
+	      return dto;
+	   }
+
+
+	public void update(BoardDTO dto) {
+		 Connection conn = null;
+	      PreparedStatement pstmt = null;
+	      String sql = "UPDATE board SET title = ?, author = ?, "
+	            + "content=?, writeday=sysdate WHERE num=?";
+	      try {
+	         conn = datafactory.getConnection();
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setString(1, dto.getTitle());
+	         pstmt.setString(2, dto.getAuthor());
+	         pstmt.setString(3, dto.getContent());
+	         pstmt.setInt(4, dto.getNum());
+	         
+	         pstmt.executeUpdate();
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         closeAll(null, pstmt, conn);
+	      }
+	      
+	   }
+		
+	}
+	
+	

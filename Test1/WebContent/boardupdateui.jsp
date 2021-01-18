@@ -7,23 +7,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${dto.title}</title>
+<title>글수정</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
+<h1>글수정</h1>
+<form action="boardupdate.do" method="post">
+   글번호: <input name="num" value="${dto.num}" readonly>
+   <br>
+   작성자: <input name="author" value="${dto.author}">
+   <br>
+   제목: <input name="title" value="${dto.title}">
+   <br>
+   내용:<br>
+   <textarea rows="10" name="content">${dto.content}</textarea>
+   <br>
+   <input type="submit" value="수정완료">
+</form>
 
-글번호: ${dto.num}<br>
-작성자: ${dto.author}<br>
-작성일: ${dto.writeday}<br>
-조회수: ${dto.readcnt}<br>
-제목: ${dto.title}<br>
-내용:
-<p>
-${dto.content}
-</p>
-<br>
-<a href="boardmove.do">목록으로가기</a>
-<a href="boarddelete.do?num=${dto.num}">글삭제</a>
-<a href="boardupdateui.do?num=${dto.num}">글수정</a>
+
+</body>
 </body>
 </html>
